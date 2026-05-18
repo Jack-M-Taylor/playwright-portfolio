@@ -42,3 +42,4 @@ npx playwright show-report                # view HTML report after a run
 - Jack is learning Playwright from scratch, coming in with some coding and test automation background
 - Building this for job interviews — clarity, professional patterns, and good README matter
 - Prefers things explained with the "why", not just the "what"
+- **Learning style: visual then action-based** — always show/explain what something looks like first, then guide him through doing it one step at a time. Don't front-load too many instructions at once.
