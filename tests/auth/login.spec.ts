@@ -46,4 +46,18 @@ test.describe('Login', () => {
     await page.goto('/inventory.html');
     await expect(page).toHaveURL('/');
   });
+
+  test('should login successfully as error_user', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+    await loginPage.login(USERS.error_user.username, USERS.error_user.password);
+    await expect(page).toHaveURL('/inventory.html');
+    await expect(inventoryPage.inventoryItems).toHaveCount(6);
+  });
+
+  test('should login successfully as visual_user', async ({ page }) => {
+    const inventoryPage = new InventoryPage(page);
+    await loginPage.login(USERS.visual_user.username, USERS.visual_user.password);
+    await expect(page).toHaveURL('/inventory.html');
+    await expect(inventoryPage.inventoryItems).toHaveCount(6);
+  });
 });
