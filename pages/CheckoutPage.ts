@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { allure } from 'allure-playwright';
 
 export class CheckoutPage {
   readonly page: Page;
@@ -28,16 +29,22 @@ export class CheckoutPage {
   }
 
   async fillShippingInfo(firstName: string, lastName: string, postalCode: string) {
-    await this.firstNameInput.fill(firstName);
-    await this.lastNameInput.fill(lastName);
-    await this.postalCodeInput.fill(postalCode);
+    await allure.step('Fill in shipping information', async () => {
+      await this.firstNameInput.fill(firstName);
+      await this.lastNameInput.fill(lastName);
+      await this.postalCodeInput.fill(postalCode);
+    });
   }
 
   async continue() {
-    await this.continueButton.click();
+    await allure.step('Continue to order summary', async () => {
+      await this.continueButton.click();
+    });
   }
 
   async finish() {
-    await this.finishButton.click();
+    await allure.step('Confirm and finish order', async () => {
+      await this.finishButton.click();
+    });
   }
 }

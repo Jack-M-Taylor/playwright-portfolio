@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { allure } from 'allure-playwright';
 
 export class InventoryPage {
   readonly page: Page;
@@ -20,25 +21,35 @@ export class InventoryPage {
   }
 
   async addItemToCart(itemName: string) {
-    const item = this.inventoryItems.filter({ hasText: itemName });
-    await item.locator('[data-test^="add-to-cart"]').click();
+    await allure.step(`Add "${itemName}" to cart`, async () => {
+      const item = this.inventoryItems.filter({ hasText: itemName });
+      await item.locator('[data-test^="add-to-cart"]').click();
+    });
   }
 
   async removeItemFromCart(itemName: string) {
-    const item = this.inventoryItems.filter({ hasText: itemName });
-    await item.locator('[data-test^="remove"]').click();
+    await allure.step(`Remove "${itemName}" from cart`, async () => {
+      const item = this.inventoryItems.filter({ hasText: itemName });
+      await item.locator('[data-test^="remove"]').click();
+    });
   }
 
   async goToCart() {
-    await this.cartLink.click();
+    await allure.step('Navigate to cart', async () => {
+      await this.cartLink.click();
+    });
   }
 
   async logout() {
-    await this.menuButton.click();
-    await this.logoutLink.click();
+    await allure.step('Logout', async () => {
+      await this.menuButton.click();
+      await this.logoutLink.click();
+    });
   }
 
   async sortBy(option: 'az' | 'za' | 'lohi' | 'hilo') {
-    await this.sortDropdown.selectOption(option);
+    await allure.step(`Sort products by "${option}"`, async () => {
+      await this.sortDropdown.selectOption(option);
+    });
   }
 }
