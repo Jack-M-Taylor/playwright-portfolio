@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { allure } from 'allure-playwright';
 
 export class CartPage {
   readonly page: Page;
@@ -18,11 +19,15 @@ export class CartPage {
   }
 
   async removeItem(itemName: string) {
-    const item = this.cartItems.filter({ hasText: itemName });
-    await item.locator('[data-test^="remove"]').click();
+    await allure.step(`Remove "${itemName}" from cart`, async () => {
+      const item = this.cartItems.filter({ hasText: itemName });
+      await item.locator('[data-test^="remove"]').click();
+    });
   }
 
   async proceedToCheckout() {
-    await this.checkoutButton.click();
+    await allure.step('Proceed to checkout', async () => {
+      await this.checkoutButton.click();
+    });
   }
 }
