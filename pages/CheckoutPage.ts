@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { allure } from 'allure-playwright';
+import { step } from 'allure-js-commons';
 
 export class CheckoutPage {
   readonly page: Page;
@@ -29,7 +29,7 @@ export class CheckoutPage {
   }
 
   async fillShippingInfo(firstName: string, lastName: string, postalCode: string) {
-    await allure.step('Fill in shipping information', async () => {
+    await step('Fill in shipping information', async () => {
       await this.firstNameInput.fill(firstName);
       await this.lastNameInput.fill(lastName);
       await this.postalCodeInput.fill(postalCode);
@@ -37,13 +37,13 @@ export class CheckoutPage {
   }
 
   async continue() {
-    await allure.step('Continue to order summary', async () => {
+    await step('Continue to order summary', async () => {
       await this.continueButton.click();
     });
   }
 
   async finish() {
-    await allure.step('Confirm and finish order', async () => {
+    await step('Confirm and finish order', async () => {
       await this.finishButton.click();
     });
   }
