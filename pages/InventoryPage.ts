@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { allure } from 'allure-playwright';
+import { step } from 'allure-js-commons';
 
 export class InventoryPage {
   readonly page: Page;
@@ -9,6 +9,7 @@ export class InventoryPage {
   readonly menuButton: Locator;
   readonly logoutLink: Locator;
   readonly sortDropdown: Locator;
+  readonly itemPrices: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,38 +19,44 @@ export class InventoryPage {
     this.menuButton = page.locator('#react-burger-menu-btn');
     this.logoutLink = page.locator('[data-test="logout-sidebar-link"]');
     this.sortDropdown = page.locator('[data-test="product-sort-container"]');
+    this.itemPrices = page.locator('.inventory_item_price');
   }
 
   async addItemToCart(itemName: string) {
-    await allure.step(`Add "${itemName}" to cart`, async () => {
+    await step(`Add "${itemName}" to cart`, async () => {
       const item = this.inventoryItems.filter({ hasText: itemName });
       await item.locator('[data-test^="add-to-cart"]').click();
     });
   }
 
   async removeItemFromCart(itemName: string) {
-    await allure.step(`Remove "${itemName}" from cart`, async () => {
+    await step(`Remove "${itemName}" from cart`, async () => {
       const item = this.inventoryItems.filter({ hasText: itemName });
       await item.locator('[data-test^="remove"]').click();
     });
   }
 
   async goToCart() {
-    await allure.step('Navigate to cart', async () => {
+    await step('Navigate to cart', async () => {
       await this.cartLink.click();
     });
   }
 
   async logout() {
-    await allure.step('Logout', async () => {
+    await step('Logout', async () => {
       await this.menuButton.click();
       await this.logoutLink.click();
     });
   }
 
   async sortBy(option: 'az' | 'za' | 'lohi' | 'hilo') {
-    await allure.step(`Sort products by "${option}"`, async () => {
+    await step(`Sort products by "${option}"`, async () => {
       await this.sortDropdown.selectOption(option);
     });
+  }
+
+  async getPricesAsNumbers(): Promise<number[]> {
+    const priceTexts = await this.itemPrices.allTextContents();
+    return priceTexts.map((price) => parseFloat(price.replace('$', '')));
   }
 }
