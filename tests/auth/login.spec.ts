@@ -21,7 +21,9 @@ test.describe('Login', () => {
     await story('Valid login');
     await severity('critical');
     await tag('smoke');
-    await description('Standard user should be able to log in and see 6 products on the inventory page.');
+    await description(
+      'Standard user should be able to log in and see 6 products on the inventory page.',
+    );
 
     const inventoryPage = new InventoryPage(page);
     await loginPage.login(USERS.standard.username, USERS.standard.password);
@@ -38,7 +40,9 @@ test.describe('Login', () => {
     await story('Locked out user');
     await severity('critical');
     await tag('smoke');
-    await description('A locked out user should see an appropriate error message and not be able to log in.');
+    await description(
+      'A locked out user should see an appropriate error message and not be able to log in.',
+    );
 
     await loginPage.login(USERS.lockedOut.username, USERS.lockedOut.password);
 
@@ -79,7 +83,9 @@ test.describe('Login', () => {
   test('should show error for invalid credentials', async () => {
     await story('Invalid credentials');
     await severity('critical');
-    await description('A user entering the wrong password should see a credentials mismatch error.');
+    await description(
+      'A user entering the wrong password should see a credentials mismatch error.',
+    );
 
     await loginPage.login(USERS.standard.username, 'wrong_password');
 
@@ -93,7 +99,9 @@ test.describe('Login', () => {
     await story('Unauthenticated access');
     await severity('critical');
     await tag('smoke');
-    await description('Attempting to access the inventory page without being logged in should redirect to the login page.');
+    await description(
+      'Attempting to access the inventory page without being logged in should redirect to the login page.',
+    );
 
     await step('Navigate directly to inventory page', async () => {
       await page.goto('/inventory.html');

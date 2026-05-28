@@ -54,11 +54,11 @@ npx playwright show-report
 
 ## Test Coverage
 
-| Area       | Tests |
-|------------|-------|
-| Login / Auth | Valid login, locked out user, empty fields, invalid credentials, unauthenticated redirect |
+| Area          | Tests                                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------------- |
+| Login / Auth  | Valid login, locked out user, empty fields, invalid credentials, unauthenticated redirect           |
 | Shopping Cart | Add item, add multiple items, remove from inventory, view cart, remove from cart, continue shopping |
-| Checkout | Full happy path, order summary, missing first name, last name, postal code |
+| Checkout      | Full happy path, order summary, missing first name, last name, postal code                          |
 
 ## Design Patterns
 

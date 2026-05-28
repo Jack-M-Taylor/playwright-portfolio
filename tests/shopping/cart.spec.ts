@@ -62,7 +62,7 @@ test.describe('Shopping Cart', () => {
     await inventoryPage.removeItemFromCart('Sauce Labs Backpack');
 
     await step('Verify cart badge is no longer visible', async () => {
-      await expect(inventoryPage.cartBadge).not.toBeVisible();
+      await expect(inventoryPage.cartBadge).toBeHidden();
     });
   });
 
@@ -98,7 +98,9 @@ test.describe('Shopping Cart', () => {
   test('should navigate back to inventory from cart', async ({ page }) => {
     await story('Navigation');
     await severity('minor');
-    await description('Clicking continue shopping from the cart should return the user to the inventory page.');
+    await description(
+      'Clicking continue shopping from the cart should return the user to the inventory page.',
+    );
 
     await inventoryPage.goToCart();
 
