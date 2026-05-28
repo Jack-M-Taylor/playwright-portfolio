@@ -55,7 +55,7 @@ test.describe('Checkout', () => {
     });
   });
 
-  test('should display order summary before finishing', async ({ page }) => {
+  test('should display order summary before finishing', async () => {
     await story('Order summary');
     await severity('normal');
     await description('The order summary page should display item total, tax, and order total before the user confirms.');

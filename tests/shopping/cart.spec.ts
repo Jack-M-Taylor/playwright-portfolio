@@ -62,7 +62,7 @@ test.describe('Shopping Cart', () => {
     await inventoryPage.removeItemFromCart('Sauce Labs Backpack');
 
     await step('Verify cart badge is no longer visible', async () => {
-      await expect(inventoryPage.cartBadge).not.toBeVisible();
+      await expect(inventoryPage.cartBadge).toBeHidden();
     });
   });
 
