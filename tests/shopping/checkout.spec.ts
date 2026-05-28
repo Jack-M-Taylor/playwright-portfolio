@@ -38,7 +38,9 @@ test.describe('Checkout', () => {
     await story('Happy path');
     await severity('critical');
     await tag('smoke');
-    await description('A user should be able to complete the full checkout flow and see an order confirmation.');
+    await description(
+      'A user should be able to complete the full checkout flow and see an order confirmation.',
+    );
 
     await checkoutPage.fillShippingInfo('John', 'Doe', '12345');
     await checkoutPage.continue();
@@ -58,7 +60,9 @@ test.describe('Checkout', () => {
   test('should display order summary before finishing', async () => {
     await story('Order summary');
     await severity('normal');
-    await description('The order summary page should display item total, tax, and order total before the user confirms.');
+    await description(
+      'The order summary page should display item total, tax, and order total before the user confirms.',
+    );
 
     await checkoutPage.fillShippingInfo('John', 'Doe', '12345');
     await checkoutPage.continue();
@@ -73,7 +77,9 @@ test.describe('Checkout', () => {
   test('should show error when first name is missing', async () => {
     await story('Field validation');
     await severity('normal');
-    await description('Submitting checkout info without a first name should show a validation error.');
+    await description(
+      'Submitting checkout info without a first name should show a validation error.',
+    );
 
     await checkoutPage.fillShippingInfo('', 'Doe', '12345');
     await checkoutPage.continue();
@@ -87,7 +93,9 @@ test.describe('Checkout', () => {
   test('should show error when last name is missing', async () => {
     await story('Field validation');
     await severity('normal');
-    await description('Submitting checkout info without a last name should show a validation error.');
+    await description(
+      'Submitting checkout info without a last name should show a validation error.',
+    );
 
     await checkoutPage.fillShippingInfo('John', '', '12345');
     await checkoutPage.continue();
@@ -101,7 +109,9 @@ test.describe('Checkout', () => {
   test('should show error when postal code is missing', async () => {
     await story('Field validation');
     await severity('normal');
-    await description('Submitting checkout info without a postal code should show a validation error.');
+    await description(
+      'Submitting checkout info without a postal code should show a validation error.',
+    );
 
     await checkoutPage.fillShippingInfo('John', 'Doe', '');
     await checkoutPage.continue();
